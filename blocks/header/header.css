@@ -1,0 +1,11 @@
+@import url(./__logo/header__logo.css);
+
+.header{
+    width: 882px;
+    height: 74px;
+    margin: 0 auto;
+    /*border: 1px solid red;*/
+    padding-top: 45px;
+    border-bottom: 1px solid ; 
+    border-color: rgba(84,84,84, 0.7);
+}

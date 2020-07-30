@@ -1,0 +1,13 @@
+.profile__name{
+    color: white;
+    font-style: normal;
+    font-weight: 500;
+    font-size: 42px;
+    line-height: 1;
+    margin-top: 0px;
+    margin-bottom: 0px;
+    margin-left: 0px;
+    margin-right: 0px;
+    border: 1px solid red;
+
+}
