@@ -1,0 +1,8 @@
+.element__paragraph{
+    margin: 0;
+    line-height: 79px;
+    border: 1px solid red;
+    font-style: normal;
+    font-weight: 900;
+    font-size: 24px;
+}

@@ -1,0 +1,11 @@
+@import url(./__image/element__image.css);
+@import url(./__paragraph/element__paragraph.css);
+@import url(./__heart-button/element__heart-button.css);
+@import url(./__info/element__info.css);
+
+.element{
+    border: 1px solid red;
+    width: 282px;
+    margin-top: 47px;
+    height: 361px;
+}
