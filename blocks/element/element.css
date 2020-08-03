@@ -4,8 +4,9 @@
 @import url(./__info/element__info.css);
 
 .element{
-    border: 1px solid red;
+    /*border: 1px solid red;*/
     width: 282px;
-    margin-top: 47px;
     height: 361px;
+    background-color: white;
+    border-radius: 10px;
 }
