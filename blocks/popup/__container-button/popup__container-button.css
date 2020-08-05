@@ -1,4 +1,12 @@
 .popup__container-button{
+    margin-top: 48px;
+    margin-left: 36px;
+    width: 358px;
     background-color: black;
     border: 0;
+}
+
+.popup__container-button:hover{
+    transition: all 0.5s;
+    opacity: 0.8;
 }

@@ -2,6 +2,7 @@
 @import url(./__container-button/popup__container-button.css);
 @import url(./__container-input/popup__container-input.css);
 @import url(./__container-text/popup__comtainer-text.css);
+@import url(./__close-button/popup__close-button.css);
 
 
 .popup{
@@ -12,5 +13,9 @@
     height: 100%;
     background-color: rgba(0,0,0,0.5);
     overflow: hidden;
-    /*display: none;*/
+    display: none;
+}
+
+.popup_opened{
+    display: block;
 }
