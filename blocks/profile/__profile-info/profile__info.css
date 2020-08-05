@@ -8,3 +8,11 @@
     display: flex;
     justify-content: space-between;
 }
+
+
+
+@media screen and (max-width:320px){
+    .profile__info{
+        display: block;
+    }
+}
