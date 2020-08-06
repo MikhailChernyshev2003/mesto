@@ -6,6 +6,7 @@ let inputName = popup.querySelector("#name");
 let inputJob = popup.querySelector("#job");
 let name = document.querySelector(".profile__name");
 let job = document.querySelector(".profile__status");
+let form = document.querySelector(".popup__container")
 
 
 let popupToggle = function (evt) {
@@ -16,6 +17,6 @@ function formSubmitHandler (evt) {
     job.textContent = inputJob.value;
     name.textContent = inputName.value;
 }
-SaveButton.addEventListener('click', formSubmitHandler); 
+form.addEventListener('submit', formSubmitHandler); 
 OpenButton.addEventListener('click', popupToggle);
 CloseButton.addEventListener('click', popupToggle);

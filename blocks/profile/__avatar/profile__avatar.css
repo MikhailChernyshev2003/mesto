@@ -5,9 +5,3 @@
 }
 
 
-@media screen and (max-width:750px){
-    .div{
-        width: 120px;
-        margin: 0 auto;
-    }
-}
