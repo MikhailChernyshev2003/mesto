@@ -21,9 +21,10 @@
     }
 }
 
-@media screen and (max-width:320px){
+@media screen and (max-width:750px){
     .profile{
         width: 282px;
+        height: 290px;
         display: block;
     }
 }

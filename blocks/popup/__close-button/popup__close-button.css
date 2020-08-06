@@ -14,3 +14,15 @@
     transition: all 0.5s;
     opacity: 0.8;
 }
+
+
+@media screen and (max-width:320px){
+    .popup__close-button{
+        border-radius: 0px;
+        width: 58px;
+        height: 58px;
+        border-radius: 10px;
+        left: 82%;
+        top: 30%;
+    }
+}

@@ -10,3 +10,12 @@
     transition: all 0.5s;
     opacity: 0.8;
 }
+
+
+@media screen and (max-width:320px){
+    .popup__container-button{
+        margin-left: 0px;
+        text-align: center;
+        width: 320px;
+    }
+}

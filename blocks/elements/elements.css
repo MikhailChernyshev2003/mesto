@@ -22,3 +22,9 @@
         grid-template-rows: 1fr 1fr 1fr 1fr 1fr 1fr;
     }
 }
+
+@media screen and (max-width:320px){
+    .elements{
+        margin-top: 36px;
+    }
+}

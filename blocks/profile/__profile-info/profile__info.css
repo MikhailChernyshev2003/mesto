@@ -11,8 +11,12 @@
 
 
 
-@media screen and (max-width:320px){
+@media screen and (max-width:750px){
     .profile__info{
-        display: block;
+        width: 282px;
+        margin-top: 15px;
+        margin-bottom: 0px;
+        margin-left: auto;
+        margin-right: auto;
     }
 }
