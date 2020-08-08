@@ -5,5 +5,10 @@
     height: 21px;
     padding-left: 0px;
     border: 0px;
+    background: url(../../../images/heart__button.svg) no-repeat center;
 }
 
+.element__heart-button:hover{
+    opacity: 0.8;
+    transition: all 0.5s;
+}

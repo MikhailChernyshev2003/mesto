@@ -2,8 +2,11 @@
     margin-top: 48px;
     margin-left: 36px;
     width: 358px;
+    height: 50px;
     background-color: black;
     border: 0;
+    color: white;
+    font-size: 18px;
 }
 
 .popup__container-button:hover{
@@ -12,10 +15,10 @@
 }
 
 
-@media screen and (max-width:320px){
+@media screen and (max-width:430px){
     .popup__container-button{
         margin-left: 0px;
         text-align: center;
-        width: 320px;
+        width: 100%;
     }
 }

@@ -11,12 +11,17 @@ let form = document.querySelector(".popup__container")
 
 let popupToggle = function (evt) {
     popup.classList.toggle('popup_opened');
+    if(popup.classList.contains('popup_opened')){
+        inputName.value=name.textContent;
+        inputJob.value=job.textContent;
+    }
 }
 function formSubmitHandler (evt) {
     evt.preventDefault(); 
     job.textContent = inputJob.value;
     name.textContent = inputName.value;
+    popup.classList.toggle('popup_opened');
 }
-form.addEventListener('submit', formSubmitHandler); 
+SaveButton.addEventListener('click', formSubmitHandler); 
 OpenButton.addEventListener('click', popupToggle);
 CloseButton.addEventListener('click', popupToggle);
