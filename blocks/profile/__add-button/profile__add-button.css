@@ -16,6 +16,7 @@
 .profile__add-button:hover{
     transition: all 0.5s;
     opacity: 0.6;
+    cursor: pointer; 
 }
 
 
