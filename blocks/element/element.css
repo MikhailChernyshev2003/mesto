@@ -2,12 +2,14 @@
 @import url(./__paragraph/element__paragraph.css);
 @import url(./__heart-button/element__heart-button.css);
 @import url(./__info/element__info.css);
+@import url(./__delete-button/element__delete-button.css);
 
 .element{
     width: 282px;
     height: 361px;
     background-color: white;
     border-radius: 10px;
+    position: relative;
 }
 
 

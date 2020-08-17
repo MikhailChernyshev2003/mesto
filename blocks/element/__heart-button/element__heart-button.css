@@ -8,8 +8,12 @@
     background: url(../../../images/heart__button.svg) no-repeat center;
 }
 
+.element__heart-button_active{
+    background: url(../../../images/heart__button-active.svg) no-repeat center; 
+}
+
 .element__heart-button:hover{
-    opacity: 0.8;
+    opacity: 0.5;
     transition: all 0.5s;
     cursor: pointer; 
 }
