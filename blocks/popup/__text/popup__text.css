@@ -1,0 +1,7 @@
+.popup__text{
+    color: white;
+    position: fixed;
+    font-size: 14px;
+    left: 310px;
+    top:85%;
+}

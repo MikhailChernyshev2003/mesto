@@ -1,5 +1,6 @@
 let popup = document.querySelector(".popup");
 const addPopup = document.querySelector("#addPopup");
+const imgPopup = document.querySelector('#imgPopup');
 let OpenButton = document.querySelector(".profile__edit-button");
 const addButton = document.querySelector('.profile__add-button');
 let CloseButton = popup.querySelector(".popup__close-button");
@@ -14,6 +15,7 @@ const inputLink = addPopup.querySelector('#link');
 let name = document.querySelector(".profile__name");
 let job = document.querySelector(".profile__status");
 let form = document.querySelector(".popup__container");
+const img = document.querySelectorAll('.element__image');
 
 const initialCards = [
     {
@@ -74,10 +76,6 @@ function addElement (evt){
     element.querySelector('.element__heart-button').addEventListener('click', function (evt) {
         evt.target.classList.toggle('element__heart-button_active');
     });
-    //element.querySelector('.element__delete-button').addEventListener('click', function(evt) {
-        //const listItem = evt.target.closest('.todo__item');
-        //listItem.remove();
-    //});
     elements.prepend(element);
     const deleteButton = document.querySelectorAll('.element__delete-button');
     deleteButton.forEach(function (item) {
@@ -89,7 +87,6 @@ function addElement (evt){
 }
 
 initialCards.forEach(function (initialCards){
-    //evt.preventDefault(); 
     const elementTemplate = document.querySelector('#element').content;
     const elements = document.querySelector('.elements');
     const element = elementTemplate.cloneNode(true);
@@ -98,13 +95,19 @@ initialCards.forEach(function (initialCards){
     element.querySelector('.element__heart-button').addEventListener('click', function (evt) {
         evt.target.classList.toggle('element__heart-button_active');
     });
-    //element.querySelector('.element__delete-button').addEventListener('click', function(evt) {
-        //const listItem = evt.target.closest('.todo__item');
-        //listItem.remove();
-    //});
+    element.querySelector('.element__image').addEventListener('click', function (evt) {
+        document.querySelector('.popup__image').src = initialCards.link;
+        imgPopup.classList.toggle('.popup_opened');
+    });
     elements.prepend(element);
 });
 
+
+//Array.from(img).forEach(function (evt){
+  //  img.addEventListener('click', function (evt){
+    //    imgPopup.classList.toggle('popup_opened');
+    //}) 
+//});
 
 //function deleteElement (evt) {
     //const listItem = deleteButton.closest('.element');
