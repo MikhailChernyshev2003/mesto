@@ -2,11 +2,12 @@
     margin-top: 13px;
     width: 24px;
     height: 24px;
-    display: flex;
-    background-color: black;
+    margin-left: 17px;
+    /*display: flex;
+    background-color: black;*/
     border: 1px solid white;
-    align-items: center;
-    justify-content: center;
+    /*align-items: center;
+    justify-content: center;*/
     background: url(../../../images/edit-button.svg) no-repeat center;
 }
 .profile__edit-button:hover{
@@ -18,11 +19,7 @@
 
 @media screen and (max-width:750px){
     .profile__edit-button{
-        height: 20px;
-        padding-left: 9px;
-        padding-right: 9px;
-        display: block;
-        margin-right: 40px;
+        line-height: 20px;
         margin-top: 3px;
     }
 }
