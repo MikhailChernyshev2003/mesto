@@ -22,14 +22,14 @@
                     <div class="profile__info">
                         <h1 class="profile__name">
                             <span>Жак-Ив Кусто</span>
-                            <button class="profile__edit-button" type="button" data-popup=".popup"></button>
+                            <button class="profile__edit-button" type="button" data-popup=".profile-popup"></button>
                         </h1>
                         <p class="profile__status">Исследователь океана</p>      
                     </div>
                 <button
                         class="profile__add-button"
                         type="button"
-                        data-popup=".addPopup"
+                        data-popup=".add-popup"
                 ></button>
             </section>
 
@@ -50,7 +50,7 @@
                 <p class="footer__text">&copy; 2020 Чернышев Михаил</p>  
             </footer>
 
-            <section class="popup">
+            <section class="popup profile-popup">
                 <form class="popup__container">
                     <h2 class="popup__container-text">Редактирование профиля</h2>
                     <input class="popup__container-input" type="text" id="name" name="name" value="Жак-Ив Кусто" placeholder="Имя"> 
@@ -59,10 +59,10 @@
                         Сохранить
                     </button>
                 </form>
-                <button class="popup__close-button" type="button" data-popup=".popup"></button>
+                <button class="popup__close-button" type="button" data-popup=".profile-popup"></button>
             </section>
 
-            <section class="popup addPopup">
+            <section class="popup add-popup">
                 <form class="popup__container">
                     <h2 class="popup__container-text">Новое место</h2>
                     <input class="popup__container-input" type="text" id="title" name="title" placeholder="Название"> 
@@ -71,10 +71,10 @@
                         Сохранить
                     </button>
                 </form>
-                <button class="popup__close-button"type="button" data-popup=".addPopup"></button>
+                <button class="popup__close-button"type="button" data-popup=".add-popup"></button>
             </section>
 
-            <section class="popup imgPopup">
+            <section class="popup img-popup">
                 <div class="popup__wrapper">
                     <img class="popup__image" src="" alt="Тут должна быть открытая фотография">
                     <p class="popup__text"></p>
