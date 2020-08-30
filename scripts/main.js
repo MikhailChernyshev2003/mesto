@@ -3,7 +3,6 @@ const addCardPopup = document.querySelector('.add-popup');
 const imgPopup = document.querySelector('.img-popup');
 const openProfilePopupButton = document.querySelector('.profile__edit-button');
 const openAddCardPopupButton = document.querySelector('.profile__add-button');
-//const closeButtons = document.querySelectorAll('.popup__close-button');
 const closeButton = profilePopup.querySelector(".popup__close-button");
 const addCardPopupCloseButton = addCardPopup.querySelector('.popup__close-button');
 const imgCloseButton = document.querySelector('.popup__close-img-button');
