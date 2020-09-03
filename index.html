@@ -50,11 +50,13 @@
                 <p class="footer__text">&copy; 2020 Чернышев Михаил</p>  
             </footer>
 
-            <section class="popup profile-popup">
-                <form class="popup__container">
+            <section class="popup profile-popup popup__overlay">
+                <form class="popup__container" novalidate>
                     <h2 class="popup__container-text">Редактирование профиля</h2>
-                    <input class="popup__container-input" type="text" id="name" name="name" value="Жак-Ив Кусто" placeholder="Имя"> 
-                    <input class="popup__container-input" type="text" id="job" name="job" value="Исследователь океана" placeholder="Работа">
+                    <input class="popup__container-input" type="text" id="name" name="name" value="Жак-Ив Кусто" placeholder="Имя" required minlength="2" maxlength="40"> 
+                    <span class="popup__input-error" id="name-error"></span>
+                    <input class="popup__container-input" type="text" id="job" name="job" value="Исследователь океана" placeholder="Работа" required minlength="2" maxlength="200">
+                    <span class="popup__input-error" id="job-error"></span>
                     <button class="popup__container-button" type="submit">
                         Сохранить
                     </button>
@@ -62,11 +64,13 @@
                 <button class="popup__close-button" type="button" data-popup=".profile-popup"></button>
             </section>
 
-            <section class="popup add-popup">
-                <form class="popup__container">
+            <section class="popup add-popup popup__overlay">
+                <form class="popup__container add-form" novalidate>
                     <h2 class="popup__container-text">Новое место</h2>
-                    <input class="popup__container-input" type="text" id="title" name="title" placeholder="Название"> 
-                    <input class="popup__container-input" type="text" id="link" name="link" placeholder="Ссылка на картинку">
+                    <input class="popup__container-input" type="text" id="title" name="title" placeholder="Название" required minlength="1" maxlength="30">
+                    <span class="popup__input-error" id="title-error"></span> 
+                    <input class="popup__container-input" type="url" id="link" name="link" placeholder="Ссылка на картинку" required>
+                    <span class="popup__input-error" id="link-error"></span>
                     <button class="popup__container-button" type="submit">
                         Сохранить
                     </button>
@@ -74,7 +78,7 @@
                 <button class="popup__close-button"type="button" data-popup=".add-popup"></button>
             </section>
 
-            <section class="popup img-popup">
+            <section class="popup img-popup popup__overlay">
                 <div class="popup__wrapper">
                     <img class="popup__image" src="" alt="Тут должна быть открытая фотография">
                     <p class="popup__text"></p>
@@ -84,5 +88,6 @@
         </main>    
     </div>
     <script src="./scripts/main.js"></script>
+    <script src="./scripts/validate.js"></script>
 </body>
 </html>

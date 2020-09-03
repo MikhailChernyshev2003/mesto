@@ -9,6 +9,13 @@
     font-size: 18px;
 }
 
+.popup__container-button_disabled{
+    border: 1px solid rgba( 0, 0, 0, 0.2);
+    color: rgba( 0, 0, 0, 0.2);
+    background: none;
+    pointer-events: none;
+}
+
 .popup__container-button:hover{
     transition: all 0.5s;
     opacity: 0.8;

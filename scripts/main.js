@@ -15,7 +15,10 @@ const inputLink = addCardPopup.querySelector('#link');
 const userName = document.querySelector('.profile__name span');
 const userJob = document.querySelector('.profile__status');
 const elements = document.querySelector('.elements');
-
+//const profilePopupOverlay
+//const addCardPopupOverlay
+//const imgPopupOverlay = imgPopup
+ 
 const initialCards = [
     {
         name: 'Архыз',
@@ -124,3 +127,26 @@ addCardPopupCloseButton.addEventListener('click', function(evt){
 imgCloseButton.addEventListener('click', function (evt) {
     togglePopup(imgPopup);
 });
+document.addEventListener('keypress', function(evt){
+    if(evt.keyCode === 27 && profilePopup.classList.contains('popup_opened')){
+        togglePopup(profilePopup);
+    }
+    if(evt.keyCode === 27 && addCardPopup.classList.contains('popup_opened')){
+        togglePopup(addCardPopup);
+    }
+    if(evt.keyCode === 27 && imgPopup.classList.contains('popup_opened')){
+        togglePopup(imgPopup);
+    }
+})
+
+document.addEventListener('click', function(evt){
+    if (evt.target.classList.contains('profile-popup')){
+        togglePopup(profilePopup);
+    }
+    if (evt.target.classList.contains('add-popup')){
+        togglePopup(addCardPopup);
+    }
+    if (evt.target.classList.contains('img-popup')){
+        togglePopup(imgPopup);
+    }
+})

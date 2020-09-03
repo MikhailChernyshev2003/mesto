@@ -1,0 +1,26 @@
+.popup__error_visible {
+    font-style: normal;
+    font-weight: normal;
+    font-family: "Inter", "Arial", sans-serif;
+    position: absolute;
+    display: inline;
+    font-size: 12px;
+    line-height: 1;
+    color: #ff0000;
+    margin: 0 0 0 36px;
+    top: 145px;
+    left: 0;    
+}
+  
+.popup__error_visible:last-of-type {
+    top: 208px;
+}
+
+@media screen and (max-width: 360px){
+    .popup__error_visible{
+        top:172px
+    }
+    .popup__error_visible:last-of-type{
+        top:235px;
+    }
+}
