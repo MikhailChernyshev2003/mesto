@@ -16,6 +16,7 @@ const userName = document.querySelector('.profile__name span');
 const userJob = document.querySelector('.profile__status');
 const elements = document.querySelector('.elements');
 const documentImage = document.querySelector('.popup__image');
+
  
 const initialCards = [
     {
@@ -71,13 +72,13 @@ function createElement(link, title) {
     });    
     return element;
 }
-const setEventListenerForHeartButton = function(){
-    document.querySelector('.element__heart-button').addEventListener('click', function (evt) {
+const setEventListenerForHeartButton = function(card){
+    card.querySelector('.element__heart-button').addEventListener('click', function (evt) {
         evt.target.classList.toggle('element__heart-button_active');
     });
 }
-const setEventListenerForDeleteButton = function (item) {
-    item.addEventListener('click', (evt) => {
+const setEventListenerForDeleteButton = function (card) {
+    card.querySelector('.element__delete-button').addEventListener('click', (evt) => {
         const targetElement = evt.target;
         targetElement.parentNode.remove();
     });
@@ -85,24 +86,22 @@ const setEventListenerForDeleteButton = function (item) {
 
 function addElement(evt) {
     evt.preventDefault();
-    const newElement = createElement(inputLink.value, inputTitle.value);
-    elements.prepend(newElement);    
+    const newElement = createElement(inputLink.value, inputTitle.value);        
     togglePopup(addCardPopup);
     inputTitle.value = '';
     inputLink.value = '';
-    setEventListenerForHeartButton();
-    const deleteButton = document.querySelector('.element__delete-button');
-    setEventListenerForDeleteButton(deleteButton);
+    setEventListenerForHeartButton(newElement);
+    setEventListenerForDeleteButton(newElement);
+    elements.prepend(newElement);
 }
 
-function initCards (initialCards) {
+function initCard (initialCards) {
     const newElement = createElement(initialCards.link, initialCards.name);
+    setEventListenerForHeartButton(newElement);
+    setEventListenerForDeleteButton(newElement);
     elements.prepend(newElement);
-    setEventListenerForHeartButton();
-    const deleteButton = document.querySelector('.element__delete-button');
-    setEventListenerForDeleteButton(deleteButton);
 }
-initialCards.forEach(initCards);
+initialCards.forEach(initCard);
 
 openProfilePopupButton.addEventListener('click', function(){
     inputName.value=userName.textContent;
@@ -132,23 +131,26 @@ function closePopupByEsc(item){
     item.classList.toggle('popup_opened');
     deleteEventListenerForEsc();
 }
+const handler = function (evt){
+    if(evt.key === 'Escape' && profilePopup.classList.contains('popup_opened')){
+        closePopupByEsc(profilePopup);
+    }
+    if(evt.key === 'Escape' && addCardPopup.classList.contains('popup_opened')){
+        closePopupByEsc(addCardPopup);
+       //deleteEventListenerForEsc();
+    }
+    if(evt.key === 'Escape' && imgPopup.classList.contains('popup_opened')){
+        closePopupByEsc(imgPopup);
+        //deleteEventListenerForEsc();
+    }
+}
 
 function setEventListenerForEsc(){
-    document.addEventListener('keydown', function (evt){
-        if(evt.key === 'Escape' && profilePopup.classList.contains('popup_opened')){
-            closePopupByEsc(profilePopup);
-        }
-        if(evt.key === 'Escape' && addCardPopup.classList.contains('popup_opened')){
-            closePopupByEsc(addCardPopup);
-        }
-        if(evt.key === 'Escape' && imgPopup.classList.contains('popup_opened')){
-            closePopupByEsc(imgPopup);
-        }
-    })
+    document.addEventListener('keydown', handler);
 }    
 
 function deleteEventListenerForEsc(){
-    document.removeEventListener('keyup', setEventListenerForEsc, false);
+    document.removeEventListener('keydown', handler);
 }
 
 document.addEventListener('click', function(evt){
