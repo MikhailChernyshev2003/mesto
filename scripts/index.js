@@ -1,3 +1,5 @@
+import FormValidator from "./formValidator.js";
+import Card from "./Card.js";
 const profilePopup = document.querySelector('.profile-popup');
 const addCardPopup = document.querySelector('.add-popup');
 const imgPopup = document.querySelector('.img-popup');
@@ -56,7 +58,7 @@ function editFormSubmitHandler(evt) {
     togglePopup(profilePopup);
 }
 
-function createElement(link, title) {
+/*function createElement(link, title) {
     const elementTemplate = document.querySelector('#element').content;
     const element = elementTemplate.cloneNode(true);
     const image = element.querySelector('.element__image');
@@ -71,12 +73,13 @@ function createElement(link, title) {
         setEventListenerForEsc();
     });    
     return element;
-}
-const setEventListenerForHeartButton = function(card){
+}*/
+
+/*const setEventListenerForHeartButton = function(card){
     card.querySelector('.element__heart-button').addEventListener('click', function (evt) {
         evt.target.classList.toggle('element__heart-button_active');
     });
-}
+}*/
 const setEventListenerForDeleteButton = function (card) {
     card.querySelector('.element__delete-button').addEventListener('click', (evt) => {
         const targetElement = evt.target;
@@ -86,20 +89,24 @@ const setEventListenerForDeleteButton = function (card) {
 
 function addElement(evt) {
     evt.preventDefault();
-    const newElement = createElement(inputLink.value, inputTitle.value);        
+    const card = new Card(inputLink.value, inputTitle.value);
+    const newElement = card.getElement();      
     togglePopup(addCardPopup);
     inputTitle.value = '';
     inputLink.value = '';
-    setEventListenerForHeartButton(newElement);
+    //setEventListenerForHeartButton(newElement);
     setEventListenerForDeleteButton(newElement);
-    elements.prepend(newElement);
+    elements.prepend(card.getElement());
 }
 
 function initCard (initialCards) {
-    const newElement = createElement(initialCards.link, initialCards.name);
-    setEventListenerForHeartButton(newElement);
+    const card = new Card(initialCards.link, initialCards.name);
+    //card.getElement();
+    //const newElement = createElement(initialCards.link, initialCards.name);
+    const newElement = card.getElement();
+    //setEventListenerForHeartButton(newElement);
     setEventListenerForDeleteButton(newElement);
-    elements.prepend(newElement);
+    elements.prepend(card.getElement());
 }
 initialCards.forEach(initCard);
 
@@ -164,3 +171,18 @@ document.addEventListener('click', function(evt){
         togglePopup(imgPopup);
     }
 })
+
+function formValidation() {
+    const formArray = Array.from(document.querySelectorAll(".popup__container")); 
+    formArray.forEach((form) => {
+        const formValidator = new FormValidator({
+            inputSelector: '.popup__container-input',
+            submitButtonSelector: '.popup__container-button',
+            inactiveButtonClass: 'popup__container-button_disabled',
+            inputErrorClass: 'popup__container-input_error',
+            errorClass: 'popup__error_visible'
+        }, form);
+        formValidator.enableValidation();
+    });
+}
+formValidation();
