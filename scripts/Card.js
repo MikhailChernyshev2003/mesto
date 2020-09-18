@@ -27,10 +27,10 @@ export default class Card{
             evt.target.classList.toggle('element__heart-button_active');
         });
     }
-    _setEventListenerForDeleteButton = function (card) {
+    /*_setEventListenerForDeleteButton() {
         card.querySelector('.element__delete-button').addEventListener('click', (evt) => {
             const targetElement = evt.target;
             targetElement.parentNode.remove();
         });
-    }
+    }*/
 }
