@@ -2,6 +2,7 @@ export default class Card{
     constructor(link, title){
         this._createElement(link, title);
         this._setEventListenerForHeartButton();
+        this._setEventListenerForDeleteButton();
     }
     getElement(){
         return this.element;
@@ -27,10 +28,10 @@ export default class Card{
             evt.target.classList.toggle('element__heart-button_active');
         });
     }
-    /*_setEventListenerForDeleteButton() {
-        card.querySelector('.element__delete-button').addEventListener('click', (evt) => {
+    _setEventListenerForDeleteButton() {
+        this.element.querySelector('.element__delete-button').addEventListener('click', (evt) => {
             const targetElement = evt.target;
             targetElement.parentNode.remove();
         });
-    }*/
+    }
 }

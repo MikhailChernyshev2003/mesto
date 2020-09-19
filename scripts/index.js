@@ -58,54 +58,17 @@ function editFormSubmitHandler(evt) {
     togglePopup(profilePopup);
 }
 
-/*function createElement(link, title) {
-    const elementTemplate = document.querySelector('#element').content;
-    const element = elementTemplate.cloneNode(true);
-    const image = element.querySelector('.element__image');
-    element.querySelector('.element__paragraph').textContent = title;
-    image.src = link;
-    image.alt = title;
-    image.addEventListener('click', function () {
-        document.querySelector('.popup__text').textContent = title;
-        documentImage.src = link;
-        documentImage.alt = title;
-        togglePopup(imgPopup);
-        setEventListenerForEsc();
-    });    
-    return element;
-}*/
-
-/*const setEventListenerForHeartButton = function(card){
-    card.querySelector('.element__heart-button').addEventListener('click', function (evt) {
-        evt.target.classList.toggle('element__heart-button_active');
-    });
-}*/
-const setEventListenerForDeleteButton = function (card) {
-    card.querySelector('.element__delete-button').addEventListener('click', (evt) => {
-        const targetElement = evt.target;
-        targetElement.parentNode.remove();
-    });
-}
-
 function addElement(evt) {
     evt.preventDefault();
-    const card = new Card(inputLink.value, inputTitle.value);
-    const newElement = card.getElement();      
+    const card = new Card(inputLink.value, inputTitle.value);     
     togglePopup(addCardPopup);
     inputTitle.value = '';
     inputLink.value = '';
-    //setEventListenerForHeartButton(newElement);
-    setEventListenerForDeleteButton(newElement);
     elements.prepend(card.getElement());
 }
 
 function initCard (initialCards) {
     const card = new Card(initialCards.link, initialCards.name);
-    //card.getElement();
-    //const newElement = createElement(initialCards.link, initialCards.name);
-    const newElement = card.getElement();
-    //setEventListenerForHeartButton(newElement);
-    setEventListenerForDeleteButton(newElement);
     elements.prepend(card.getElement());
 }
 initialCards.forEach(initCard);
@@ -144,11 +107,9 @@ const handler = function (evt){
     }
     if(evt.key === 'Escape' && addCardPopup.classList.contains('popup_opened')){
         closePopupByEsc(addCardPopup);
-       //deleteEventListenerForEsc();
     }
     if(evt.key === 'Escape' && imgPopup.classList.contains('popup_opened')){
         closePopupByEsc(imgPopup);
-        //deleteEventListenerForEsc();
     }
 }
 

@@ -1,4 +1,4 @@
-const enableValidation = function ({formSelector, ...other}) {
+/*const enableValidation = function ({formSelector, ...other}) {
     const formArray = Array.from(document.querySelectorAll(formSelector));
     formArray.forEach((formElement) => {
         formElement.addEventListener('submit', (evt) => {
@@ -67,6 +67,6 @@ enableValidation({
     inactiveButtonClass: 'popup__container-button_disabled',
     inputErrorClass: 'popup__container-input_error',
     errorClass: 'popup__error_visible'
-});
+});*/
   
 
