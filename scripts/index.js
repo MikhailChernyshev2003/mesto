@@ -2,7 +2,7 @@ import FormValidator from "./formValidator.js";
 import Card from "./Card.js";
 const profilePopup = document.querySelector('.profile-popup');
 const addCardPopup = document.querySelector('.add-popup');
-const imgPopup = document.querySelector('.img-popup');
+export const imgPopup = document.querySelector('.img-popup');
 const openProfilePopupButton = document.querySelector('.profile__edit-button');
 const openAddCardPopupButton = document.querySelector('.profile__add-button');
 const closeButton = profilePopup.querySelector(".popup__close-button");
@@ -17,7 +17,6 @@ const inputLink = addCardPopup.querySelector('#link');
 const userName = document.querySelector('.profile__name span');
 const userJob = document.querySelector('.profile__status');
 const elements = document.querySelector('.elements');
-const documentImage = document.querySelector('.popup__image');
 
  
 const initialCards = [
@@ -47,7 +46,7 @@ const initialCards = [
     }
 ];
 
-function togglePopup(popupForToggle) {
+export function togglePopup(popupForToggle) {
     popupForToggle.classList.toggle('popup_opened');    
 }
 
@@ -113,7 +112,7 @@ const handler = function (evt){
     }
 }
 
-function setEventListenerForEsc(){
+export function setEventListenerForEsc(){
     document.addEventListener('keydown', handler);
 }    
 

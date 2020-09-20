@@ -1,3 +1,5 @@
+import {togglePopup, imgPopup, setEventListenerForEsc} from "./index.js";
+const documentImage = document.querySelector('.popup__image');
 export default class Card{
     constructor(link, title){
         this._createElement(link, title);
