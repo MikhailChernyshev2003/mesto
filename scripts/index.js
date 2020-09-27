@@ -1,8 +1,10 @@
-import FormValidator from "./formValidator.js";
-import Card from "./Card.js";
+import {imgPopup, togglePopup, setEventListenerForEsc} from './utils.js';
+import FormValidator from './FormValidator.js';
+import Card from './Card.js';
+
 const profilePopup = document.querySelector('.profile-popup');
 const addCardPopup = document.querySelector('.add-popup');
-export const imgPopup = document.querySelector('.img-popup');
+//export const imgPopup = document.querySelector('.img-popup');
 const openProfilePopupButton = document.querySelector('.profile__edit-button');
 const openAddCardPopupButton = document.querySelector('.profile__add-button');
 const closeButton = profilePopup.querySelector(".popup__close-button");
@@ -16,7 +18,7 @@ const inputTitle = addCardPopup.querySelector('#title');
 const inputLink = addCardPopup.querySelector('#link');
 const userName = document.querySelector('.profile__name span');
 const userJob = document.querySelector('.profile__status');
-const elements = document.querySelector('.elements');
+const cardList = document.querySelector('.elements');
 
  
 const initialCards = [
@@ -46,9 +48,9 @@ const initialCards = [
     }
 ];
 
-export function togglePopup(popupForToggle) {
+/*export function togglePopup(popupForToggle) {
     popupForToggle.classList.toggle('popup_opened');    
-}
+}*/
 
 function editFormSubmitHandler(evt) {
     evt.preventDefault();
@@ -57,28 +59,36 @@ function editFormSubmitHandler(evt) {
     togglePopup(profilePopup);
 }
 
+function newCard(link, name, cardSelector){
+    return new Card(link, name, cardSelector);
+}
+
 function addElement(evt) {
     evt.preventDefault();
-    const card = new Card(inputLink.value, inputTitle.value);     
+    const card =  newCard(inputLink.value, inputTitle.value, '#element');
+    saveCardButton.classList.add('popup__container-button_disabled');   
     togglePopup(addCardPopup);
     inputTitle.value = '';
     inputLink.value = '';
-    elements.prepend(card.getElement());
+    cardList.prepend(card.getCard());
+    
 }
 
 function initCard (initialCards) {
-    const card = new Card(initialCards.link, initialCards.name);
-    elements.prepend(card.getElement());
+    const card = newCard(initialCards.link, initialCards.name, '#element');
+    cardList.prepend(card.getCard());
 }
 initialCards.forEach(initCard);
 
 openProfilePopupButton.addEventListener('click', function(){
-    inputName.value=userName.textContent;
-    inputJob.value=userJob.textContent; 
+    inputName.value = userName.textContent;
+    inputJob.value = userJob.textContent;
+    removeError(profilePopup); 
     togglePopup(profilePopup);
     setEventListenerForEsc();
 });
 openAddCardPopupButton.addEventListener('click', function(){
+    removeError(addCardPopup);
     togglePopup(addCardPopup);
     setEventListenerForEsc();
 });
@@ -96,31 +106,42 @@ imgCloseButton.addEventListener('click', function () {
     togglePopup(imgPopup);
 });
 
-function closePopupByEsc(item){
+/*function closePopupByEsc(item){
     item.classList.toggle('popup_opened');
     deleteEventListenerForEsc();
-}
-const handler = function (evt){
+}*/
+
+/*export const escHandler = function (evt){
     if(evt.key === 'Escape' && profilePopup.classList.contains('popup_opened')){
-        closePopupByEsc(profilePopup);
+        togglePopup(profilePopup);
+        deleteEventListenerForEsc();
     }
     if(evt.key === 'Escape' && addCardPopup.classList.contains('popup_opened')){
-        closePopupByEsc(addCardPopup);
+        togglePopup(addCardPopup);
+        deleteEventListenerForEsc();
     }
     if(evt.key === 'Escape' && imgPopup.classList.contains('popup_opened')){
-        closePopupByEsc(imgPopup);
+        togglePopup(imgPopup);
+        deleteEventListenerForEsc();
+    }
+}*/
+
+export const escHandler = function (evt){
+    if(evt.key === 'Escape'){
+        const openedPopup = document.querySelector('.popup_opened');
+        togglePopup(openedPopup);
+        deleteEventListenerForEsc();
     }
 }
-
-export function setEventListenerForEsc(){
+/*export function setEventListenerForEsc(){
     document.addEventListener('keydown', handler);
-}    
+}*/    
 
 function deleteEventListenerForEsc(){
-    document.removeEventListener('keydown', handler);
+    document.removeEventListener('keydown', escHandler);
 }
 
-document.addEventListener('click', function(evt){
+/*document.addEventListener('click', function(evt){
     if (evt.target.classList.contains('profile-popup')){
         togglePopup(profilePopup);
     }
@@ -130,7 +151,25 @@ document.addEventListener('click', function(evt){
     if (evt.target.classList.contains('img-popup')){
         togglePopup(imgPopup);
     }
+})*/
+
+document.addEventListener('click', function(evt){
+    if (evt.target.classList.contains('popup')) {
+        const openedPopup = document.querySelector('.popup_opened');
+        togglePopup(openedPopup);
+    }
 })
+
+function removeError(item) {
+    item.querySelectorAll(".popup__container-input").forEach((input) => {
+        input.classList.remove("popup__container-input_error");
+    });
+    item.querySelectorAll(".popup__input-error").forEach((span) => {
+        span.classList.remove("popup__error_visible");
+        span.textContent = "";
+    });
+    saveProfileButton.classList.remove('popup__container-button_disabled'); 
+}
 
 function formValidation() {
     const formArray = Array.from(document.querySelectorAll(".popup__container")); 
