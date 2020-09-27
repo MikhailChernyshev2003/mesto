@@ -6,9 +6,6 @@ export default class Card{
         this._cardSelector = cardSelector;
         this._link = link;
         this._title = title; 
-        //this._createElement(link, title);
-        //this._setEventListenerForHeartButton();
-        //this._setEventListenerForDeleteButton();
     }
 
     getCard() {
@@ -42,15 +39,4 @@ export default class Card{
     _getTemplate() {
         return document.querySelector(this._cardSelector).content;
     }
-    /*_setEventListenerForHeartButton(){
-        this.element.querySelector('.element__heart-button').addEventListener('click', function (evt) {
-            evt.target.classList.toggle('element__heart-button_active');
-        });
-    }
-    _setEventListenerForDeleteButton() {
-        this.element.querySelector('.element__delete-button').addEventListener('click', (evt) => {
-            const targetElement = evt.target;
-            targetElement.parentNode.remove();
-        });
-    }*/
 }

@@ -4,7 +4,6 @@ import Card from './Card.js';
 
 const profilePopup = document.querySelector('.profile-popup');
 const addCardPopup = document.querySelector('.add-popup');
-//export const imgPopup = document.querySelector('.img-popup');
 const openProfilePopupButton = document.querySelector('.profile__edit-button');
 const openAddCardPopupButton = document.querySelector('.profile__add-button');
 const closeButton = profilePopup.querySelector(".popup__close-button");
@@ -47,10 +46,6 @@ const initialCards = [
         link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/baikal.jpg'
     }
 ];
-
-/*export function togglePopup(popupForToggle) {
-    popupForToggle.classList.toggle('popup_opened');    
-}*/
 
 function editFormSubmitHandler(evt) {
     evt.preventDefault();
@@ -106,52 +101,17 @@ imgCloseButton.addEventListener('click', function () {
     togglePopup(imgPopup);
 });
 
-/*function closePopupByEsc(item){
-    item.classList.toggle('popup_opened');
-    deleteEventListenerForEsc();
-}*/
-
-/*export const escHandler = function (evt){
-    if(evt.key === 'Escape' && profilePopup.classList.contains('popup_opened')){
-        togglePopup(profilePopup);
-        deleteEventListenerForEsc();
-    }
-    if(evt.key === 'Escape' && addCardPopup.classList.contains('popup_opened')){
-        togglePopup(addCardPopup);
-        deleteEventListenerForEsc();
-    }
-    if(evt.key === 'Escape' && imgPopup.classList.contains('popup_opened')){
-        togglePopup(imgPopup);
-        deleteEventListenerForEsc();
-    }
-}*/
-
 export const escHandler = function (evt){
     if(evt.key === 'Escape'){
         const openedPopup = document.querySelector('.popup_opened');
         togglePopup(openedPopup);
         deleteEventListenerForEsc();
     }
-}
-/*export function setEventListenerForEsc(){
-    document.addEventListener('keydown', handler);
-}*/    
+} 
 
 function deleteEventListenerForEsc(){
     document.removeEventListener('keydown', escHandler);
 }
-
-/*document.addEventListener('click', function(evt){
-    if (evt.target.classList.contains('profile-popup')){
-        togglePopup(profilePopup);
-    }
-    if (evt.target.classList.contains('add-popup')){
-        togglePopup(addCardPopup);
-    }
-    if (evt.target.classList.contains('img-popup')){
-        togglePopup(imgPopup);
-    }
-})*/
 
 document.addEventListener('click', function(evt){
     if (evt.target.classList.contains('popup')) {
