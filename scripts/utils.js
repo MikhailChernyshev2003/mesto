@@ -1,4 +1,3 @@
-//import {escHandler} from './index.js';
 export const imgPopup = document.querySelector('.img-popup');
 
 export function togglePopup(popupForToggle) {
