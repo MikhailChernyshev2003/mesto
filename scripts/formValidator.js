@@ -35,7 +35,7 @@ export default class FormValidator{
         const buttonElement = this._formElement.querySelector(this._submitButtonSelector);
         this._toggleButtonOpacity(inputArray, buttonElement);
         inputArray.forEach((inputElement) => {
-            inputElement.addEventListener("input", () => {
+            inputElement.addEventListener('input', () => {
                 this._checkInputValid(inputElement);
                 this._toggleButtonOpacity(inputArray, buttonElement);
             });
@@ -58,7 +58,7 @@ export default class FormValidator{
     };
       
     enableValidation() {
-        this._formElement.addEventListener("submit", (evt) => {
+        this._formElement.addEventListener('submit', (evt) => {
             evt.preventDefault(); 
         });
         this._setEventListenerForForm();

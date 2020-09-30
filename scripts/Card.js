@@ -9,8 +9,8 @@ export default class Card{
     }
 
     getCard() {
-        const elementTemplate = this._getTemplate();
-        const element = elementTemplate.cloneNode(true);
+        //const elementTemplate = this._getTemplate();
+        const element = this._getTemplate();
         const image = element.querySelector('.element__image');
         element.querySelector('.element__paragraph').textContent = this._title;
         image.src = this._link;
@@ -20,23 +20,40 @@ export default class Card{
         this._setEventListeners(this._link, this._title);
         return this.element;
     }
+
+    _handleLikeCard(evt) {
+        evt.target.classList.toggle('element__heart-button_active');
+    }
+
+    _handleDeleteCard(evt){
+        const targetElement = evt.target;
+        targetElement.parentNode.remove();
+    }
+
+    _handleCardClick(link, title){
+        document.querySelector('.popup__text').textContent = title;
+        documentImage.src = link;
+        documentImage.alt = title;
+        togglePopup(imgPopup);
+        setEventListenerForEsc();
+    }
+
     _setEventListeners(link, title){
-        this.element.querySelector('.element__heart-button').addEventListener('click', function (evt) {
-            evt.target.classList.toggle('element__heart-button_active');
+        this.element.querySelector('.element__heart-button').addEventListener('click', (evt) =>{
+            this._handleLikeCard(evt);
         });
         this.element.querySelector('.element__delete-button').addEventListener('click', (evt) => {
-            const targetElement = evt.target;
-            targetElement.parentNode.remove();
+            this._handleDeleteCard(evt);
         });
-        this.image.addEventListener('click', function () {
-            document.querySelector('.popup__text').textContent = title;
-            documentImage.src = link;
-            documentImage.alt = title;
-            togglePopup(imgPopup);
-            setEventListenerForEsc();
+        this.image.addEventListener('click', () => {
+            this._handleCardClick(link, title);
         });
     }
+
     _getTemplate() {
-        return document.querySelector(this._cardSelector).content;
+        const template = document.querySelector(this._cardSelector).content;
+        const element = template.cloneNode(true);
+        return element;
     }
+    
 }
