@@ -6,7 +6,7 @@ const profilePopup = document.querySelector('.profile-popup');
 const addCardPopup = document.querySelector('.add-popup');
 const openProfilePopupButton = document.querySelector('.profile__edit-button');
 const openAddCardPopupButton = document.querySelector('.profile__add-button');
-const closeButton = profilePopup.querySelector(".popup__close-button");
+const closeButton = profilePopup.querySelector('.popup__close-button');
 const addCardPopupCloseButton = addCardPopup.querySelector('.popup__close-button');
 const imgCloseButton = document.querySelector('.popup__close-img-button');
 const saveProfileButton = profilePopup.querySelector('.popup__container-button');
@@ -18,7 +18,15 @@ const inputLink = addCardPopup.querySelector('#link');
 const userName = document.querySelector('.profile__name span');
 const userJob = document.querySelector('.profile__status');
 const cardList = document.querySelector('.elements');
+const cardSelector = '#element';
 
+const validationConfig = {
+    inputSelector: '.popup__container-input',
+    submitButtonSelector: '.popup__container-button',
+    inactiveButtonClass: 'popup__container-button_disabled',
+    inputErrorClass: 'popup__container-input_error',
+    errorClass: 'popup__error_visible'
+}
  
 const initialCards = [
     {
@@ -59,24 +67,24 @@ function createCard(link, name, cardSelector){
 }
 
 function removeError(item) {
-    const inputList = item.querySelectorAll('.popup__container-input');
+    const inputList = item.querySelectorAll(validationConfig.inputSelector);
     const errorList = item.querySelectorAll('.popup__input-error');
 
     inputList.forEach((input) => {
-        input.classList.remove('popup__container-input_error');
+        input.classList.remove(validationConfig.inputErrorClass);
     });
     
     errorList.forEach((span) => {
-        span.classList.remove('popup__error_visible');
+        span.classList.remove(validationConfig.errorClass);
         span.textContent = '';
     });
-    saveProfileButton.classList.remove('popup__container-button_disabled'); 
+    saveProfileButton.classList.remove(validationConfig.inactiveButtonClass); 
 }
 
 function addElement(evt) {
     evt.preventDefault();
-    const card =  createCard(inputLink.value, inputTitle.value, '#element');
-    saveCardButton.classList.add('popup__container-button_disabled');   
+    const card = createCard(inputLink.value, inputTitle.value, cardSelector);
+    saveCardButton.classList.add(validationConfig.inactiveButtonClass);   
     togglePopup(addCardPopup);
     inputTitle.value = '';
     inputLink.value = '';
@@ -85,7 +93,7 @@ function addElement(evt) {
 }
 
 function initCard (initialCards) {
-    const card = createCard(initialCards.link, initialCards.name, '#element');
+    const card = createCard(initialCards.link, initialCards.name, cardSelector);
     cardList.prepend(card.getCard());
 }
 initialCards.forEach(initCard);
@@ -125,26 +133,9 @@ document.addEventListener('click', function(evt){
     }
 })
 
-function profileFormValidation() {
-    const formValidator = new FormValidator({
-        inputSelector: '.popup__container-input',
-        submitButtonSelector: '.popup__container-button',
-        inactiveButtonClass: 'popup__container-button_disabled',
-        inputErrorClass: 'popup__container-input_error',
-        errorClass: 'popup__error_visible'
-    }, profilePopup);
-    formValidator.enableValidation();
-}
+const profileFormValidator = new FormValidator(validationConfig, profilePopup);
+profileFormValidator.enableValidation();
 
-function addCardFormValidation() {
-    const formValidator = new FormValidator({
-        inputSelector: '.popup__container-input',
-        submitButtonSelector: '.popup__container-button',
-        inactiveButtonClass: 'popup__container-button_disabled',
-        inputErrorClass: 'popup__container-input_error',
-        errorClass: 'popup__error_visible'
-    }, addCardPopup);
-    formValidator.enableValidation();
-}
-profileFormValidation();
-addCardFormValidation();
+const addCardFormValidatior = new FormValidator(validationConfig, addCardPopup);
+addCardFormValidatior.enableValidation();
+
