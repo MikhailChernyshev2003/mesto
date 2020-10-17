@@ -2,10 +2,11 @@ import {togglePopup, imgPopup, setEventListenerForEsc} from './utils.js';
 const documentImage = document.querySelector('.popup__image');
 
 export default class Card{
-    constructor(link, title, cardSelector){
+    constructor(link, title, cardSelector, handleCardClick){
         this._cardSelector = cardSelector;
         this._link = link;
         this._title = title; 
+        //this._handleCardClick = handleCardClick;
     }
 
     getCard() {

@@ -19,6 +19,7 @@ const userName = document.querySelector('.profile__name span');
 const userJob = document.querySelector('.profile__status');
 const cardList = document.querySelector('.elements');
 const cardSelector = '#element';
+const errorSelector = '.popup__input-error';
 
 const validationConfig = {
     inputSelector: '.popup__container-input',
@@ -68,7 +69,7 @@ function createCard(link, name, cardSelector){
 
 function removeError(item) {
     const inputList = item.querySelectorAll(validationConfig.inputSelector);
-    const errorList = item.querySelectorAll('.popup__input-error');
+    const errorList = item.querySelectorAll(errorSelector);
 
     inputList.forEach((input) => {
         input.classList.remove(validationConfig.inputErrorClass);
@@ -139,3 +140,9 @@ profileFormValidator.enableValidation();
 const addCardFormValidatior = new FormValidator(validationConfig, addCardPopup);
 addCardFormValidatior.enableValidation();
 
+/*const cardList = new Section({
+    items: initialCards,
+    renderer: createCard
+}, gridCards);
+  
+cardList.rendererItems();*/
