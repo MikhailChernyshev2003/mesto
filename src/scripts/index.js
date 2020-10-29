@@ -1,6 +1,13 @@
+import '../pages/index.css';
+
 import {imgPopup, togglePopup, setEventListenerForEsc, escHandler, deleteEventListenerForEsc} from './utils.js';
-import FormValidator from './FormValidator.js';
-import Card from './Card.js';
+import FormValidator from '../scripts/FormValidator.js';
+import Card from '../scripts/Card.js';
+import Popup from '../scripts/Popup.js';
+import PopupWithForm from '../scripts/PopupWithForm.js';
+import PopupWithImage from '../scripts/PopupWithImage.js';
+import Section from '../scripts/Section.js';
+import UserInfo from '../scripts/UserInfo.js'; 
 
 const profilePopup = document.querySelector('.profile-popup');
 const addCardPopup = document.querySelector('.add-popup');
@@ -17,7 +24,7 @@ const inputTitle = addCardPopup.querySelector('#title');
 const inputLink = addCardPopup.querySelector('#link');
 const userName = document.querySelector('.profile__name span');
 const userJob = document.querySelector('.profile__status');
-const cardList = document.querySelector('.elements');
+//const cardList = document.querySelector('.elements');
 const cardSelector = '#element';
 const errorSelector = '.popup__input-error';
 
@@ -66,6 +73,13 @@ function editFormSubmitHandler(evt) {
 function createCard(link, name, cardSelector){
     return new Card(link, name, cardSelector);
 }
+
+const cardList = new Section({
+    items: initialCards,
+    renderer: createCard
+}, cardList);
+  
+cardList.rendererItems();
 
 function removeError(item) {
     const inputList = item.querySelectorAll(validationConfig.inputSelector);
@@ -140,9 +154,19 @@ profileFormValidator.enableValidation();
 const addCardFormValidatior = new FormValidator(validationConfig, addCardPopup);
 addCardFormValidatior.enableValidation();
 
-/*const cardList = new Section({
-    items: initialCards,
-    renderer: createCard
-}, gridCards);
-  
-cardList.rendererItems();*/
+const popupImg = new PopupWithImage(imgPopup);
+popupImg.setEventListeners();
+
+const userAbout = new UserInfo(userName, userJob);
+
+const popupEditProfile = new PopupWithForm(
+    profilePopup,
+    (data) => {
+        userAbout.setUserInfo(data);
+    })
+popupEditProfile.setEventListeners();
+
+const popupAddCars = new PopupWithForm(
+    addCardPopup,
+    createCard)
+popupAddCars.setEventListeners();
