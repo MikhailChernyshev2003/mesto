@@ -64,9 +64,19 @@ module.exports = {
           }
         },
         {
-          test: /\.(png|svg|jpg|gif|woff2)$/,
+          test: /\.(woff|woff2)$/,
           loader: 'file-loader',
+          options:{
+            publicPath:'vendor/fonts/Inter'
+          }
         },
+        {
+            test: /\.(png|svg|jpg|gif)$/,
+            loader: 'file-loader',
+            options:{
+              publicPath:'images'
+            }
+          },
         {
           test: /\.html$/,
           loader: 'html-loader',
