@@ -1,5 +1,101 @@
 import '../pages/index.css';
 
+import FormValidator from '../scripts/FormValidator.js';
+import Card from '../scripts/Card.js';
+import PopupWithForm from '../scripts/PopupWithForm.js';
+import PopupWithImage from '../scripts/PopupWithImage.js';
+import Section from '../scripts/Section.js';
+import UserInfo from '../scripts/UserInfo.js'; 
+
+import {
+    profilePopup,
+    addCardPopup,
+    openProfilePopupButton,
+    openAddCardPopupButton,
+    userName,
+    userJob,
+    gridCards,
+    formAdd,
+    formProfile,
+    cardSelector,
+    validationConfig,
+    initialCards,
+    profilePopupSelector,
+    imgPopupSelector
+} from './constants.js';
+
+const popupImg = new PopupWithImage(imgPopupSelector);
+popupImg.setEventListeners();
+
+function createCard(data) {
+    const card = new Card(
+        data,
+        cardSelector,
+        () => {
+            popupImg.open(data);
+        }
+    );
+    cardList.addItem(card.getCard());
+}
+
+const cardList = new Section({
+    items: initialCards,
+    renderer: createCard
+}, gridCards);
+  
+cardList.rendererItems();
+
+const userAbout = new UserInfo(userName, userJob);
+
+const popupEditProfile = new PopupWithForm(
+    profilePopupSelector,
+    (data) => {
+        userAbout.setUserInfo(data);
+    })
+popupEditProfile.setEventListeners();
+
+const popupAddCards = new PopupWithForm(
+    addCardPopup,
+    createCard)
+popupAddCards.setEventListeners();
+
+function openEditProfile() {
+    const profileInfo = userAbout.getUserInfo();
+    userName.value = profileInfo.name;
+    userJob.value = profileInfo.info;
+}
+
+const profileFormValidator = new FormValidator(validationConfig, profilePopup);
+profileFormValidator.enableValidation();
+
+const addCardFormValidatior = new FormValidator(validationConfig, addCardPopup);
+addCardFormValidatior.enableValidation();
+
+openProfilePopupButton.addEventListener("click", () => {
+    popupEditProfile.open();
+    openEditProfile();
+    cleanErrorSpan(formProfile);
+    profileFormValidator.removeError();
+ });
+
+openAddCardPopupButton.addEventListener("click", () => {
+    popupAddCards.open();
+    cleanErrorSpan(formAdd);
+    addCardFormValidatior.removeError();
+});
+
+
+
+
+
+
+
+
+
+
+
+/*import '../pages/index.css';
+
 import {imgPopup, togglePopup, setEventListenerForEsc, escHandler, deleteEventListenerForEsc} from './utils.js';
 import FormValidator from '../scripts/FormValidator.js';
 import Card from '../scripts/Card.js';
@@ -33,7 +129,8 @@ const validationConfig = {
     submitButtonSelector: '.popup__container-button',
     inactiveButtonClass: 'popup__container-button_disabled',
     inputErrorClass: 'popup__container-input_error',
-    errorClass: 'popup__error_visible'
+    errorClass: 'popup__error_visible',
+    spanClass: 'popup__input-error'
 }
  
 const initialCards = [
@@ -70,8 +167,8 @@ function editFormSubmitHandler(evt) {
     togglePopup(profilePopup);
 }
 
-function createCard(link, name, cardSelector){
-    return new Card(link, name, cardSelector);
+function createCard(link, name, cardSelector, handleCardClick){
+    return new Card(link, name, cardSelector, handleCardClick);
 }
 
 const cardList = new Section({
@@ -98,7 +195,7 @@ function removeError(item) {
 
 function addElement(evt) {
     evt.preventDefault();
-    const card = createCard(inputLink.value, inputTitle.value, cardSelector);
+    const card = createCard(inputLink.value, inputTitle.value, cardSelector, imgPopup.open(card));
     saveCardButton.classList.add(validationConfig.inactiveButtonClass);   
     togglePopup(addCardPopup);
     inputTitle.value = '';
@@ -108,7 +205,7 @@ function addElement(evt) {
 }
 
 function initCard (initialCards) {
-    const card = createCard(initialCards.link, initialCards.name, cardSelector);
+    const card = createCard(initialCards.link, initialCards.name, cardSelector, imgPopup.open(card));
     cardList.prepend(card.getCard());
 }
 initialCards.forEach(initCard);
@@ -170,3 +267,17 @@ const popupAddCars = new PopupWithForm(
     addCardPopup,
     createCard)
 popupAddCars.setEventListeners();
+
+*/
+
+
+
+
+
+
+
+
+
+
+
+

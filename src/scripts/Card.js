@@ -2,23 +2,22 @@ import {togglePopup, imgPopup, setEventListenerForEsc} from './utils.js';
 const documentImage = document.querySelector('.popup__image');
 
 export default class Card{
-    constructor(link, title, cardSelector, handleCardClick){
+    constructor(data, cardSelector, handleCardClick){
         this._cardSelector = cardSelector;
-        this._link = link;
-        this._title = title; 
-        //this._handleCardClick = handleCardClick;
+        this._link = data.link;
+        this._name = data.name; 
+        this._handleCardClick = handleCardClick;
     }
 
     getCard() {
-        //const elementTemplate = this._getTemplate();
         const element = this._getTemplate();
         const image = element.querySelector('.element__image');
-        element.querySelector('.element__paragraph').textContent = this._title;
+        element.querySelector('.element__paragraph').textContent = this._name;
         image.src = this._link;
-        image.alt = this._title;
+        image.alt = this._name;
         this.element = element;
         this.image = image;
-        this._setEventListeners(this._link, this._title);
+        this._setEventListeners(this._link, this._name);
         return this.element;
     }
 
@@ -31,15 +30,15 @@ export default class Card{
         targetElement.parentNode.remove();
     }
 
-    _handleCardClick(link, title){
-        document.querySelector('.popup__text').textContent = title;
+    _handleCardClick(link, name){
+        document.querySelector('.popup__text').textContent = name;
         documentImage.src = link;
-        documentImage.alt = title;
+        documentImage.alt = name;
         togglePopup(imgPopup);
         setEventListenerForEsc();
     }
 
-    _setEventListeners(link, title){
+    _setEventListeners(link, name){
         this.element.querySelector('.element__heart-button').addEventListener('click', (evt) =>{
             this._handleLikeCard(evt);
         });
@@ -47,7 +46,7 @@ export default class Card{
             this._handleDeleteCard(evt);
         });
         this.image.addEventListener('click', () => {
-            this._handleCardClick(link, title);
+            this._handleCardClick(link, name);
         });
     }
 
