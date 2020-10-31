@@ -5,6 +5,7 @@ export default class FormValidator{
         this._submitButtonSelector = validationSettings.submitButtonSelector;
         this._inactiveButtonClass = validationSettings.inactiveButtonClass;
         this._inputErrorClass = validationSettings.inputErrorClass;
+        this._spanClass = validationSettings.spanClass;
         this._errorClass = validationSettings.errorClass;    
     }
     
@@ -56,6 +57,19 @@ export default class FormValidator{
             return !inputElement.validity.valid;
         });
     };
+
+    removeError() {
+        this._formElement.querySelectorAll(this._spanClass).forEach((span) => {
+          span.classList.remove(this._errorClass);
+          span.textContent = "";
+        });
+        this._formElement.querySelectorAll(this._inputSelector).forEach((input) => {
+          input.classList.remove(this._inputErrorClass);
+        });
+        const inputList = Array.from(this._formElement.querySelectorAll(this._inputSelector));
+        const buttonElement = this._formElement.querySelector(this._submitButtonSelector);
+        this._toggleButtonOpacity(inputList, buttonElement);
+      }
       
     enableValidation() {
         this._formElement.addEventListener('submit', (evt) => {
