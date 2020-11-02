@@ -11,12 +11,12 @@ export default class Popup {
     }
   
     close() {
-        this._popupSelector.classList.remove("popup_opened");
+        this._popup.classList.remove("popup_opened");
         document.removeEventListener('keydown', this._handleEscClose);
     }
   
     _handleEscClose(evt) {
-        if (evt.keyCode === escCode) {
+        if (evt.keyCode === 27) {
             this.close();
         }
     }
@@ -29,6 +29,11 @@ export default class Popup {
   
     setEventListeners() {
         this._popup.querySelector(".popup__close-button").addEventListener('click', this.close.bind(this));
+        this._popup.addEventListener('click', this._handleOverlayClick.bind(this));
+    }
+
+    setImgEventListeners() {
+        this._popup.querySelector(".popup__close-img-button").addEventListener('click', this.close.bind(this));
         this._popup.addEventListener('click', this._handleOverlayClick.bind(this));
     }
 }

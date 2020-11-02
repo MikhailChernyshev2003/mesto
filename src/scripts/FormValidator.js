@@ -69,7 +69,7 @@ export default class FormValidator{
         const inputList = Array.from(this._formElement.querySelectorAll(this._inputSelector));
         const buttonElement = this._formElement.querySelector(this._submitButtonSelector);
         this._toggleButtonOpacity(inputList, buttonElement);
-      }
+    }
       
     enableValidation() {
         this._formElement.addEventListener('submit', (evt) => {
