@@ -1,11 +1,14 @@
 export const profilePopup = document.querySelector('.profile-popup');
 export const addCardPopup = document.querySelector('.add-popup');
+export const addCardPopupSelector = '.add-popup';
 export const profilePopupSelector = '.profile-popup';
 export const imgPopupSelector = '.img-popup';
 export const openProfilePopupButton = document.querySelector('.profile__edit-button');
 export const openAddCardPopupButton = document.querySelector('.profile__add-button');
-export const userName = '.profile__name span';
-export const userJob = '.profile__status';
+export const userNameSelector = '.profile__name span';
+export const userJobSelector = '.profile__status';
+export const userName = document.querySelector('.profile__name span');
+export const userJob = document.querySelector('.profile__status');
 export const gridCards ='.elements';
 export const formAdd = document.forms.add;
 export const formProfile = document.forms.edit;

@@ -1,4 +1,3 @@
-import {togglePopup, imgPopup, setEventListenerForEsc} from './utils.js';
 const documentImage = document.querySelector('.popup__image');
 
 export default class Card{
@@ -28,14 +27,6 @@ export default class Card{
     _handleDeleteCard(evt){
         const targetElement = evt.target;
         targetElement.parentNode.remove();
-    }
-
-    _handleCardClick(link, name){
-        document.querySelector('.popup__text').textContent = name;
-        documentImage.src = link;
-        documentImage.alt = name;
-        togglePopup(imgPopup);
-        setEventListenerForEsc();
     }
 
     _setEventListeners(link, name){

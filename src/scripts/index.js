@@ -12,8 +12,8 @@ import {
     addCardPopup,
     openProfilePopupButton,
     openAddCardPopupButton,
-    userName,
-    userJob,
+    userNameSelector,
+    userJobSelector,
     gridCards,
     formAdd,
     formProfile,
@@ -21,11 +21,14 @@ import {
     validationConfig,
     initialCards,
     profilePopupSelector,
-    imgPopupSelector
+    imgPopupSelector,
+    addCardPopupSelector,
+    userName,
+    userJob
 } from './constants.js';
 
 const popupImg = new PopupWithImage(imgPopupSelector);
-popupImg.setEventListeners();
+popupImg.setImgEventListeners();
 
 function createCard(data) {
     const card = new Card(
@@ -45,7 +48,7 @@ const cardList = new Section({
   
 cardList.rendererItems();
 
-const userAbout = new UserInfo(userName, userJob);
+const userAbout = new UserInfo(userNameSelector, userJobSelector);
 
 const popupEditProfile = new PopupWithForm(
     profilePopupSelector,
@@ -55,7 +58,7 @@ const popupEditProfile = new PopupWithForm(
 popupEditProfile.setEventListeners();
 
 const popupAddCards = new PopupWithForm(
-    addCardPopup,
+    addCardPopupSelector,
     createCard)
 popupAddCards.setEventListeners();
 
@@ -74,13 +77,11 @@ addCardFormValidatior.enableValidation();
 openProfilePopupButton.addEventListener("click", () => {
     popupEditProfile.open();
     openEditProfile();
-    cleanErrorSpan(formProfile);
     profileFormValidator.removeError();
- });
+});
 
 openAddCardPopupButton.addEventListener("click", () => {
     popupAddCards.open();
-    cleanErrorSpan(formAdd);
     addCardFormValidatior.removeError();
 });
 
