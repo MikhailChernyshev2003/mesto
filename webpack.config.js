@@ -3,7 +3,7 @@ const HtmlWebpackPlugin = require('html-webpack-plugin');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin'); 
 
 module.exports = {
-    entry: './src/scripts/index.js',
+    entry: './src/pages/index.js',
     output: {
       filename: 'main.js',
       path: path.resolve(__dirname, 'dist'),
@@ -15,41 +15,43 @@ module.exports = {
     module: {
       rules: [
         {
-          test: /\.js$/,
-          exclude: '/node_modules/',
-          use: {
+            test: /\.js$/,
+            exclude: '/node_modules/',
+            use: {
             loader: 'babel-loader',
-          }
+            }
         },
         {
-          test: /\.(woff|woff2)$/,
-          loader: 'file-loader',
-          options:{
-            publicPath:'vendor/fonts/Inter'
-          }
+            test: /\.(woff|woff2)$/,
+            loader: 'file-loader',
+            options:{
+                publicPath:'vendor/fonts/Inter',
+                outputPath:'vendor/fonts/Inter',
+            }
         },
         {
             test: /\.(png|svg|jpg|gif)$/,
             loader: 'file-loader',
-            options:{
-              publicPath:'images'
+            options: {
+                publicPath: 'images',
+                outputPath: 'images',
             }
-          },
-        {
-          test: /\.html$/,
-          loader: 'html-loader',
         },
         {
-          test: /\.css$/,
-          use: [
-            MiniCssExtractPlugin.loader, {
-              loader: 'css-loader',
-              options: {
-                importLoaders: 1,
-              },
-            },
+            test: /\.html$/,
+            loader: 'html-loader',
+        },
+        {
+            test: /\.css$/,
+            use: [
+                MiniCssExtractPlugin.loader, {
+                loader: 'css-loader',
+                options: {
+                    importLoaders: 1,
+                },
+                },
             'postcss-loader',
-          ],
+            ],
         },
       ]
     },
