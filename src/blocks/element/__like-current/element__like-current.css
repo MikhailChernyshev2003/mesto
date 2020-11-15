@@ -1,0 +1,10 @@
+.element__like-current {
+    font-family:'Inter', 'Arial', sans-serif;
+    font-style: normal;
+    font-weight: 500;
+    font-size: 13px;
+    line-height: 1;
+    color: #000000;
+    text-align: center;
+    margin-top: 5px;
+}

@@ -3,6 +3,8 @@
 @import url(./__heart-button/element__heart-button.css);
 @import url(./__info/element__info.css);
 @import url(./__delete-button/element__delete-button.css);
+@import url(./__like/element__like.css);
+@import url(./__like-current/element__like-current.css);
 
 .element{
     width: 282px;
