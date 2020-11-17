@@ -4,24 +4,13 @@ export default class Card{
     constructor({ data, id, handleCardClick, handleConfirm, handleLikeCard }, cardSelector){
         this._cardSelector = cardSelector;
         this._link = data.link;
-        this._title = data.title; 
+        this._title = data.title || data.name; 
         this._handleCardClick = handleCardClick;
         this._owner = data.owner._id;
         this._likes = data.likes;
         this._handleLikeCard = handleLikeCard;
         this._handleConfirm = handleConfirm;
         this._userId = id;
-        this.setIsLiked(this.isLiked());
-
-    }
-
-    setIsLiked(isLiked){
-        if(isLiked){
-            evt.target.classList.add('element__heart-button_active');
-        }
-        else{
-            evt.target.classList.remove('element__heart-button_active');
-        }
     }
 
     getCard() {
@@ -35,13 +24,20 @@ export default class Card{
         this._elementNumber = element.querySelector(".element__like-current");
         this._elementNumber.textContent = this._likes.length;
         this._setEventListeners(this._link, this._title);
+        if (this._owner !== this._userId) {
+            this.element.querySelector('.element__delete-button').style.display = 'none';
+          };
+      
+        if (this.isLiked()) {
+            this.element.querySelector(".element__heart-button")
+              .classList.add("element__heart-button_active");
+        }
         return this.element;
     }
 
     _toggleLikeCard(evt) {
         this._buttonLike = this._element.querySelector(".element__heart-button");
         this._buttonLike.classList.toggle("element__heart-button_active");
-        //evt.target.classList.toggle('element__heart-button_active');
     }
 
     _handleDeleteCard(evt){
@@ -64,9 +60,10 @@ export default class Card{
     numberOfLikes(likes) {
         this._likes = likes;
         this._elementNumber.textContent = likes.length;
-        //this._toggleLikeCard();
     }
-
+    isDeletable(){
+        if(this._userId === this._);
+    }
     isLiked() {
         return this._likes.find((like) => {
             if (like._id === this._userId) {
