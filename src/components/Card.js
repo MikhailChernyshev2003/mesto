@@ -11,6 +11,17 @@ export default class Card{
         this._handleLikeCard = handleLikeCard;
         this._handleConfirm = handleConfirm;
         this._userId = id;
+        this.setIsLiked(this.isLiked());
+
+    }
+
+    setIsLiked(isLiked){
+        if(isLiked){
+            evt.target.classList.add('element__heart-button_active');
+        }
+        else{
+            evt.target.classList.remove('element__heart-button_active');
+        }
     }
 
     getCard() {
@@ -27,9 +38,11 @@ export default class Card{
         return this.element;
     }
 
-    /*_handleLikeCard(evt) {
-        evt.target.classList.toggle('element__heart-button_active');
-    }*/
+    _toggleLikeCard(evt) {
+        this._buttonLike = this._element.querySelector(".element__heart-button");
+        this._buttonLike.classList.toggle("element__heart-button_active");
+        //evt.target.classList.toggle('element__heart-button_active');
+    }
 
     _handleDeleteCard(evt){
         const targetElement = evt.target;
@@ -48,9 +61,10 @@ export default class Card{
         return element;
     }
     
-    numberOfLikes(number) {
-        this._elementNumber.textContent = number.length;
-        this._toggleLikeCard();
+    numberOfLikes(likes) {
+        this._likes = likes;
+        this._elementNumber.textContent = likes.length;
+        //this._toggleLikeCard();
     }
 
     isLiked() {
