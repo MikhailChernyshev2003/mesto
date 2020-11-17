@@ -217,7 +217,7 @@ Promise.all([api.getUserInfo(), api.getUsersCards()])
         addCardPopupSelector, {
         formSubmit: (data) => {
         activeLoadind(true, addCardPopup);
-        api.addMyCard(data.name, data.link)
+        api.addMyCard(data.name || data.title , data.link)
             .then((data) => {
                 createCard(data)
             })
