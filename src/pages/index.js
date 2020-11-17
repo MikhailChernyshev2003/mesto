@@ -1,4 +1,4 @@
-import '../pages/index.css';
+//import '../pages/index.css';
 
 import FormValidator from '../components/FormValidator.js';
 import Card from '../components/Card.js';
@@ -162,7 +162,7 @@ Promise.all([api.getUserInfo(), api.getUsersCards()])
         profilePopupSelector, {
         formSubmit: (user) => {
             activeLoadind(true, profilePopup);
-        api.editUserInfo(user.name, user.about)
+        api.editUserInfo(user.name, user.job)
             .then(() => {
                 userAbout.setUserInfo(user);
             })
