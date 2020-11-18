@@ -14,4 +14,8 @@ export default class PopupWithImage extends Popup {
         this._popupImg.alt = card.name;
         this._popupTitle.textContent = card.name;
     }
+    setImgEventListeners() {
+        this._popup.querySelector(".popup__close-img-button").addEventListener('click', this.close.bind(this));
+        this._popup.addEventListener('click', this._handleOverlayClick.bind(this));
+    }
 }

@@ -1,3 +1,5 @@
+import {escCode} from '../utils/constants.js';
+
 export default class Popup {
 
     constructor(popupSelector) {
@@ -16,7 +18,7 @@ export default class Popup {
     }
   
     _handleEscClose(evt) {
-        if (evt.keyCode === 27) {
+        if (evt.keyCode === escCode) {
             this.close();
         }
     }
@@ -29,11 +31,6 @@ export default class Popup {
   
     setEventListeners() {
         this._popup.querySelector(".popup__close-button").addEventListener('click', this.close.bind(this));
-        this._popup.addEventListener('click', this._handleOverlayClick.bind(this));
-    }
-
-    setImgEventListeners() {
-        this._popup.querySelector(".popup__close-img-button").addEventListener('click', this.close.bind(this));
         this._popup.addEventListener('click', this._handleOverlayClick.bind(this));
     }
 }

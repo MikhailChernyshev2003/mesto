@@ -1,4 +1,4 @@
-//import '../pages/index.css';
+import '../pages/index.css';
 
 import FormValidator from '../components/FormValidator.js';
 import Card from '../components/Card.js';
@@ -44,64 +44,6 @@ const api = new Api({
     }
 });
 
-/*const popupImg = new PopupWithImage(imgPopupSelector);
-popupImg.setImgEventListeners();
-
-function createCard(data) {
-    const card = new Card(
-        data,
-        cardSelector,
-        () => {
-            popupImg.open(data);
-        }
-    );
-    cardList.addItem(card.getCard());
-}
-
-const cardList = new Section({
-    items: initialCards,
-    renderer: createCard
-}, gridCards);
-  
-cardList.rendererItems();
-
-const userAbout = new UserInfo(userNameSelector, userJobSelector);
-
-const popupEditProfile = new PopupWithForm(
-    profilePopupSelector,
-    (data) => {
-        userAbout.setUserInfo(data);
-    })
-popupEditProfile.setEventListeners();
-
-const popupAddCards = new PopupWithForm(
-    addCardPopupSelector,
-    createCard)
-popupAddCards.setEventListeners();
-
-function openEditProfile() {
-    const profileInfo = userAbout.getUserInfo();
-    userName.value = profileInfo.name;
-    userJob.value = profileInfo.info;
-}
-
-const profileFormValidator = new FormValidator(validationConfig, profilePopup);
-profileFormValidator.enableValidation();
-
-const addCardFormValidatior = new FormValidator(validationConfig, addCardPopup);
-addCardFormValidatior.enableValidation();
-
-openProfilePopupButton.addEventListener("click", () => {
-    popupEditProfile.open();
-    openEditProfile();
-    profileFormValidator.removeError();
-});
-
-openAddCardPopupButton.addEventListener("click", () => {
-    popupAddCards.open();
-    addCardFormValidatior.removeError();
-});
-*/
 Promise.all([api.getUserInfo(), api.getUsersCards()])
     .then((res) => {
         const [data, usersCards] = res;
@@ -153,7 +95,6 @@ Promise.all([api.getUserInfo(), api.getUsersCards()])
             },
         }, cardSelector)
         return card.getCard();
-        //cardList.addItem(card.getCard());
     }
 
     const userAbout = new UserInfo(userNameSelector, userJobSelector, avatarImgSelector);
@@ -221,7 +162,7 @@ Promise.all([api.getUserInfo(), api.getUsersCards()])
         activeLoadind(true, addCardPopup);
         api.addMyCard(data.name || data.title , data.link)
             .then((data) => {
-                createCard(data)
+                cardList.addItem(createCard(data));
             })
             .then(() => {
                 popupAddCards.close();
