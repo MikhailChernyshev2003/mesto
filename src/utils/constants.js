@@ -20,6 +20,7 @@ export const cardSelector = '#element';
 export const avatarImg = document.querySelector(".profile__avatar");
 export const avatarImgSelector = ".profile__avatar";
 export const popupConfirm = document.querySelector(".popup_confirm");
+export const escCode = 27;
 
 export const validationConfig = {
     inputSelector: '.popup__container-input',

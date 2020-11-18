@@ -7,6 +7,8 @@ export default class FormValidator{
         this._inputErrorClass = validationSettings.inputErrorClass;
         this._spanClass = validationSettings.spanClass;
         this._errorClass = validationSettings.errorClass;    
+        this._inputList = Array.from(this._formElement.querySelectorAll(this._inputSelector));
+        this._buttonElement = this._formElement.querySelector(this._submitButtonSelector);
     }
     
     _hideInputError(inputElement, errorElement) {
@@ -32,10 +34,8 @@ export default class FormValidator{
     };
 
     _setEventListenerForForm() {
-        const inputArray = Array.from(this._formElement.querySelectorAll(this._inputSelector));
-        const buttonElement = this._formElement.querySelector(this._submitButtonSelector);
-        this._toggleButtonOpacity(inputArray, buttonElement);
-        inputArray.forEach((inputElement) => {
+        this._toggleButtonOpacity(this._inputList, this._buttonElement);
+        this._inputList.forEach((inputElement) => {
             inputElement.addEventListener('input', () => {
                 this._checkInputValid(inputElement);
                 this._toggleButtonOpacity(inputArray, buttonElement);
@@ -66,9 +66,7 @@ export default class FormValidator{
         this._formElement.querySelectorAll(this._inputSelector).forEach((input) => {
           input.classList.remove(this._inputErrorClass);
         });
-        const inputList = Array.from(this._formElement.querySelectorAll(this._inputSelector));
-        const buttonElement = this._formElement.querySelector(this._submitButtonSelector);
-        this._toggleButtonOpacity(inputList, buttonElement);
+        this._toggleButtonOpacity(this._inputList, this._buttonElement);
     }
       
     enableValidation() {
