@@ -1,4 +1,4 @@
-import '../pages/index.css';
+//import '../pages/index.css';
 
 import FormValidator from '../components/FormValidator.js';
 import Card from '../components/Card.js';
@@ -128,7 +128,7 @@ Promise.all([api.getUserInfo(), api.getUsersCards()])
                     popupConfirmDelete.push(() => {
                     api.deleteCard(item._id)//
                     .then(() => {
-                        card.trashCards();
+                        card.deleteCards();
                         popupConfirmDelete.close();
                     })
                     .catch((err) => {console.log(err)});

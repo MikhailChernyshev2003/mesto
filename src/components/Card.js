@@ -36,13 +36,21 @@ export default class Card{
     }
 
     _toggleLikeCard(evt) {
-        this._buttonLike = this._element.querySelector(".element__heart-button");
+        this._buttonLike = this.element.querySelector(".element__heart-button");
         this._buttonLike.classList.toggle("element__heart-button_active");
     }
 
-    _handleDeleteCard(evt){
+    /*trashCards(evt){
         const targetElement = evt.target;
         targetElement.parentNode.remove();
+    }*/
+
+    deleteCards() {
+        this._element.parentNode.removeEventListener("click", this._handleConfirm);
+        this._element.parentNode.removeEventListener("click", this._handleLikeCard);
+        this._element.parentNode.removeEventListener("click", this._handleCardClick);
+        this._element.remove();
+        this._element = null;
     }
 
     _setEventListeners(link, name){
