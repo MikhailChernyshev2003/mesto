@@ -114,6 +114,7 @@ Promise.all([api.getUserInfo(), api.getUsersCards()])
             items: reversed,
             renderer: createCard,
         }, gridCards);
+
         cardList.rendererItems();
 
         function createCard(item) {
@@ -151,7 +152,8 @@ Promise.all([api.getUserInfo(), api.getUsersCards()])
                 }
             },
         }, cardSelector)
-        cardList.addItem(card.getCard());
+        return card.getCard();
+        //cardList.addItem(card.getCard());
     }
 
     const userAbout = new UserInfo(userNameSelector, userJobSelector, avatarImgSelector);
@@ -237,17 +239,17 @@ Promise.all([api.getUserInfo(), api.getUsersCards()])
     });
 })
 
-const activeLoadind = (bool, popupSelector) => {
-    const currentSubmitBtn = popupSelector.querySelector('.popup__button-save');
+const activeLoadind = (bool, documentFragment) => {
+    const currentSubmitBtn = documentFragment.querySelector('.popup__button-save');
     if (bool) {
       currentSubmitBtn.textContent = 'Сохранение...';
     } else {
-      currentSubmitBtn.textContent = textBTN(popupSelector);
+      currentSubmitBtn.textContent = textBTN(documentFragment);
     }
 }
 
-const textBTN = (popupSelector) => {
-    if (popupSelector === addCardPopup) {
+const textBTN = (documentFragment) => {
+    if (documentFragment === addCardPopup) {
       return 'Создать'
     } else {
       return 'Сохранить'}
