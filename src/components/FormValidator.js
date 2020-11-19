@@ -38,7 +38,7 @@ export default class FormValidator{
         this._inputList.forEach((inputElement) => {
             inputElement.addEventListener('input', () => {
                 this._checkInputValid(inputElement);
-                this._toggleButtonOpacity(inputArray, buttonElement);
+                this._toggleButtonOpacity(this._inputList, this._buttonElement);
             });
         });
     };
