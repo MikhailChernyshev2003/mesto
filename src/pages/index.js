@@ -17,23 +17,18 @@ import {
     userNameSelector,
     userJobSelector,
     gridCards,
-    formAdd,
-    formProfile,
     cardSelector,
     validationConfig,
-    initialCards,
     profilePopupSelector,
     imgPopupSelector,
     addCardPopupSelector,
-    userName,
-    userJob,
     buttonAvatarEdit,
     popupAvatar,
-    avatarImg,
-    popupConfirm,
     popupConfirmSelector,
     avatarImgSelector,
-    popupAvatarSelector
+    popupAvatarSelector,
+    inputName,
+    inputJob
 } from '../utils/constants.js';
 
 const api = new Api({
@@ -121,6 +116,7 @@ Promise.all([api.getUserInfo(), api.getUsersCards()])
     popupEditProfile.setEventListeners();
 
     openProfilePopupButton.addEventListener("click", () => {
+        console.log(123);
         popupEditProfile.open();
         openEditProfile();
         profileFormValidator.removeError();
@@ -128,8 +124,8 @@ Promise.all([api.getUserInfo(), api.getUsersCards()])
 
     function openEditProfile() {
         const profileInfo = userAbout.getUserInfo();
-        userName.value = profileInfo.name;
-        userJob.value = profileInfo.about;
+        inputName.value = profileInfo.name;
+        inputJob.value = profileInfo.info;
     }
 
     const popupEditAvatar = new PopupWithForm(
